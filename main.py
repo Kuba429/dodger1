@@ -119,7 +119,7 @@ def targetCollision():
         math.pow(targetXPos-player1.xPos, 2)+math.pow(targetYPos-player1.yPos, 2))
     if targetDistance <= player1.width or targetDistance <= player1.height:
         score += 1
-        
+        newHS(score)
         targetRandom()
 
 def newHS(score):
@@ -137,10 +137,6 @@ def gameOverFunction(gameOverCall):
         gameOverText = fontGameOver.render("GAME OVER",1,(124, 129, 143))
         win.blit(gameOverText,(25,200))
     
-
-
-
-
 
 def drawing():
     global score, hScore, gameOver
@@ -187,6 +183,7 @@ while run:
         player1.xPos += player1.vel
     if keys[pygame.K_r]:
         addEnemies()
+        newHS(score)
         pygame.display.set_caption("Dodger")
         score = 0
         gameOver = 0

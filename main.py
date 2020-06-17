@@ -9,7 +9,7 @@ win = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption("Dodger")
 icon = pygame.image.load('resources/bitmap.png')
 pygame.display.set_icon(icon)
-hScoreFile = open('resources/hscore.txt','r')
+hScoreFile = open('resources/hscore.txt', 'r')
 score = 0
 hScore = hScoreFile.read()
 if not int(float((hScore))) > 1:
@@ -90,11 +90,11 @@ def enemyMove():
                 enemyVelY[j] = 0
                 newHS(score)
                 gameOver = 1
-                
+
                 targetYPos = windowHeight+5000
                 pygame.display.set_caption("Dodger    Score: "+str(score))
                 score = 0
-                
+
             break
 
 
@@ -122,21 +122,24 @@ def targetCollision():
         newHS(score)
         targetRandom()
 
+
 def newHS(score):
     global hScore
     hScore = int(hScore)
     if score > hScore:
-        hScoreFile = open('resources/hscore.txt','w')
+        hScoreFile = open('resources/hscore.txt', 'w')
         hScoreFile.write(str(score))
         hScoreFile.close()
         hScore = score
+
+
 def gameOverFunction(gameOverCall):
     global win, fontGameOver
     if gameOverCall == 1:
-        
-        gameOverText = fontGameOver.render("GAME OVER",1,(124, 129, 143))
-        win.blit(gameOverText,(25,200))
-    
+
+        gameOverText = fontGameOver.render("GAME OVER", 1, (124, 129, 143))
+        win.blit(gameOverText, (25, 200))
+
 
 def drawing():
     global score, hScore, gameOver
@@ -153,7 +156,8 @@ def drawing():
 
     pygame.display.update()
 
-fontGameOver = pygame.font.SysFont('arial', 180,True)
+
+fontGameOver = pygame.font.SysFont('arial', 180, True)
 font = pygame.font.SysFont("arial", 30, True)
 fontHS = pygame.font.SysFont("arial", 20, True)
 player1 = Player(400, 400, 30, 30, 8)
@@ -191,4 +195,3 @@ while run:
     targetCollision()
     enemyMove()
     drawing()
-
